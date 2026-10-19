@@ -1,0 +1,229 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/hud.gd" id="1"]
+[ext_resource type="Theme" path="res://ui/theme.tres" id="2"]
+[ext_resource type="Script" path="res://ui/wardrobe.gd" id="3"]
+
+[sub_resource type="StyleBoxFlat" id="ManaFill"]
+bg_color = Color(0.298, 0.561, 0.839, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="NameTab"]
+content_margin_left = 12.0
+content_margin_top = 2.0
+content_margin_right = 12.0
+content_margin_bottom = 2.0
+bg_color = Color(0.725, 0.478, 0.267, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2")
+
+[node name="Status" type="PanelContainer" parent="Root"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 276.0
+offset_bottom = 126.0
+
+[node name="Rows" type="VBoxContainer" parent="Root/Status"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Root/Status/Rows"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Adventurer"
+
+[node name="Level" type="Label" parent="Root/Status/Rows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "LV 1    JOB Novice"
+
+[node name="HP" type="HBoxContainer" parent="Root/Status/Rows"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Root/Status/Rows/HP"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "HP"
+
+[node name="Bar" type="ProgressBar" parent="Root/Status/Rows/HP"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="MP" type="HBoxContainer" parent="Root/Status/Rows"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Root/Status/Rows/MP"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "MP"
+
+[node name="Bar" type="ProgressBar" parent="Root/Status/Rows/MP"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("ManaFill")
+value = 100.0
+show_percentage = false
+
+[node name="Menu" type="HBoxContainer" parent="Root"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -216.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 52.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="WardrobeButton" type="Button" parent="Root/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+text = "Wardrobe (C)"
+
+[node name="ChatPanel" type="PanelContainer" parent="Root"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -176.0
+offset_right = 356.0
+offset_bottom = -16.0
+grow_vertical = 0
+
+[node name="Chat" type="RichTextLabel" parent="Root/ChatPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+bbcode_enabled = true
+scroll_following = true
+
+[node name="Help" type="Label" parent="Root"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = -40.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.98, 0.93, 1)
+theme_override_colors/font_outline_color = Color(0.494, 0.29, 0.125, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 13
+text = "WASD / click: walk    Right-drag or Q/E: turn    Wheel: zoom"
+horizontal_alignment = 2
+
+[node name="Prompt" type="PanelContainer" parent="Root"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 0.68
+anchor_right = 0.5
+anchor_bottom = 0.68
+offset_left = -110.0
+offset_right = 110.0
+offset_bottom = 40.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="PromptLabel" type="Label" parent="Root/Prompt"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[F] Talk"
+horizontal_alignment = 1
+
+[node name="Dialogue" type="PanelContainer" parent="Root"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -270.0
+offset_top = -180.0
+offset_right = 270.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Rows" type="VBoxContainer" parent="Root/Dialogue"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DialogueName" type="Label" parent="Root/Dialogue/Rows"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.973, 0.91, 1)
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("NameTab")
+text = "Name"
+
+[node name="DialogueText" type="Label" parent="Root/Dialogue/Rows"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 17
+text = "Hello!"
+autowrap_mode = 3
+
+[node name="Hint" type="Label" parent="Root/Dialogue/Rows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "F or click: next      Esc: close"
+horizontal_alignment = 2
+
+[node name="Wardrobe" type="PanelContainer" parent="Root"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -200.0
+offset_right = -16.0
+offset_bottom = 200.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("3")

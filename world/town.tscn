@@ -1,0 +1,531 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://world/ground.gd" id="ground"]
+[ext_resource type="Script" path="res://world/house.gd" id="house"]
+[ext_resource type="Script" path="res://world/tree.gd" id="tree"]
+[ext_resource type="Script" path="res://world/fountain.gd" id="fountain"]
+[ext_resource type="Script" path="res://world/market_stall.gd" id="stall"]
+[ext_resource type="Script" path="res://world/lamp_post.gd" id="lamp"]
+[ext_resource type="Script" path="res://world/bunting.gd" id="bunting"]
+[ext_resource type="Script" path="res://world/fence.gd" id="fence"]
+[ext_resource type="Script" path="res://world/prop.gd" id="prop"]
+
+[node name="Town" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+script = ExtResource("ground")
+
+[node name="Fountain" type="StaticBody3D" parent="."]
+script = ExtResource("fountain")
+
+[node name="Houses" type="Node3D" parent="."]
+
+[node name="Inn" type="StaticBody3D" parent="Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -14)
+script = ExtResource("house")
+size = Vector3(6, 3.4, 4.6)
+roof_color = Color(0.851, 0.471, 0.353, 1)
+wall_color = Color(0.984, 0.937, 0.796, 1)
+flower_color = Color(0.957, 0.714, 0.796, 1)
+sign_text = "INN"
+
+[node name="Tailor" type="StaticBody3D" parent="Houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -14)
+script = ExtResource("house")
+size = Vector3(5, 3, 4.4)
+roof_color = Color(0.545, 0.373, 0.722, 1)
+wall_color = Color(0.965, 0.953, 0.973, 1)
+flower_color = Color(0.953, 0.824, 0.478, 1)
+sign_text = "TAILOR"
+
+[node name="Cafe" type="StaticBody3D" parent="Houses"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -7, 0, 14)
+script = ExtResource("house")
+size = Vector3(5.4, 3, 4.4)
+roof_color = Color(0.847, 0.416, 0.604, 1)
+wall_color = Color(0.984, 0.925, 0.804, 1)
+flower_color = Color(0.984, 0.937, 0.796, 1)
+sign_text = "CAFE"
+
+[node name="ToolShop" type="StaticBody3D" parent="Houses"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 7, 0, 14)
+script = ExtResource("house")
+size = Vector3(5, 3.2, 4.4)
+roof_color = Color(0.416, 0.651, 0.847, 1)
+wall_color = Color(0.953, 0.906, 0.855, 1)
+flower_color = Color(0.957, 0.714, 0.796, 1)
+sign_text = "TOOLS"
+
+[node name="HouseEast1" type="StaticBody3D" parent="Houses"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 14, 0, -7)
+script = ExtResource("house")
+size = Vector3(4.6, 2.8, 4.2)
+roof_color = Color(0.243, 0.608, 0.353, 1)
+wall_color = Color(0.984, 0.937, 0.796, 1)
+flower_color = Color(0.957, 0.714, 0.796, 1)
+
+[node name="HouseEast2" type="StaticBody3D" parent="Houses"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 14, 0, 7)
+script = ExtResource("house")
+size = Vector3(5, 3, 4.4)
+roof_color = Color(0.851, 0.471, 0.353, 1)
+wall_color = Color(0.965, 0.953, 0.973, 1)
+flower_color = Color(0.953, 0.824, 0.478, 1)
+
+[node name="HouseWest1" type="StaticBody3D" parent="Houses"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14, 0, -7)
+script = ExtResource("house")
+size = Vector3(5, 3, 4.4)
+roof_color = Color(0.941, 0.584, 0.353, 1)
+wall_color = Color(0.984, 0.925, 0.804, 1)
+flower_color = Color(0.984, 0.937, 0.796, 1)
+
+[node name="HouseWest2" type="StaticBody3D" parent="Houses"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14, 0, 7)
+script = ExtResource("house")
+size = Vector3(4.6, 2.8, 4.2)
+roof_color = Color(0.435, 0.702, 0.659, 1)
+wall_color = Color(0.984, 0.937, 0.796, 1)
+flower_color = Color(0.957, 0.714, 0.796, 1)
+
+[node name="Market" type="Node3D" parent="."]
+
+[node name="FruitStall" type="StaticBody3D" parent="Market"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, 0, -6.2)
+script = ExtResource("stall")
+awning_color = Color(0.847, 0.416, 0.604, 1)
+goods_color = Color(0.886, 0.22, 0.298, 1)
+
+[node name="FlowerStall" type="StaticBody3D" parent="Market"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6, 0, -6.2)
+script = ExtResource("stall")
+awning_color = Color(0.416, 0.651, 0.847, 1)
+goods_color = Color(0.957, 0.714, 0.796, 1)
+
+[node name="Lamps" type="Node3D" parent="."]
+
+[node name="Lamp1" type="StaticBody3D" parent="Lamps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+script = ExtResource("lamp")
+
+[node name="Lamp2" type="StaticBody3D" parent="Lamps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+script = ExtResource("lamp")
+
+[node name="Lamp3" type="StaticBody3D" parent="Lamps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+script = ExtResource("lamp")
+
+[node name="Lamp4" type="StaticBody3D" parent="Lamps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+script = ExtResource("lamp")
+
+[node name="Bunting" type="Node3D" parent="."]
+
+[node name="Bunting1" type="Node3D" parent="Bunting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.3, -8)
+script = ExtResource("bunting")
+end_point = Vector3(16, 0, 0)
+sag = 1.1
+
+[node name="Bunting2" type="Node3D" parent="Bunting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.3, -8)
+script = ExtResource("bunting")
+end_point = Vector3(0, 0, 16)
+sag = 1.1
+
+[node name="Bunting3" type="Node3D" parent="Bunting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.3, 8)
+script = ExtResource("bunting")
+end_point = Vector3(-16, 0, 0)
+sag = 1.1
+
+[node name="Bunting4" type="Node3D" parent="Bunting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.3, 8)
+script = ExtResource("bunting")
+end_point = Vector3(0, 0, -16)
+sag = 1.1
+
+[node name="BuntingCross1" type="Node3D" parent="Bunting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.3, -8)
+script = ExtResource("bunting")
+end_point = Vector3(16, 0, 16)
+sag = 0.9
+
+[node name="BuntingCross2" type="Node3D" parent="Bunting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.3, -8)
+script = ExtResource("bunting")
+end_point = Vector3(-16, 0, 16)
+sag = 0.9
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="Tree1" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 11)
+script = ExtResource("tree")
+kind = "blossom"
+height = 1
+
+[node name="Tree2" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(0.681998, 0, 0.731354, 0, 1, 0, -0.731354, 0, 0.681998, -11, 0, 11)
+script = ExtResource("tree")
+kind = "blossom"
+height = 0.95
+
+[node name="Tree3" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.0697565, 0, 0.997564, 0, 1, 0, -0.997564, 0, -0.0697565, 11, 0, -11)
+script = ExtResource("tree")
+kind = "blossom"
+height = 0.9
+
+[node name="Tree4" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.777146, 0, 0.62932, 0, 1, 0, -0.62932, 0, -0.777146, -11, 0, -11)
+script = ExtResource("tree")
+kind = "blossom"
+height = 1.05
+
+[node name="Tree5" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.990268, 0, -0.139173, 0, 1, 0, 0.139173, 0, -0.990268, 20, 0, 20)
+script = ExtResource("tree")
+kind = "round"
+height = 1.2
+
+[node name="Tree6" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.573576, 0, -0.819152, 0, 1, 0, 0.819152, 0, -0.573576, -20, 0, 20)
+script = ExtResource("tree")
+kind = "round"
+height = 1.1
+
+[node name="Tree7" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(0.207912, 0, -0.978148, 0, 1, 0, 0.978148, 0, 0.207912, 20, 0, -20)
+script = ExtResource("tree")
+kind = "round"
+height = 1.15
+
+[node name="Tree8" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(0.857167, 0, -0.515038, 0, 1, 0, 0.515038, 0, 0.857167, -20, 0, -20)
+script = ExtResource("tree")
+kind = "round"
+height = 1.25
+
+[node name="Tree9" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(0.961262, 0, 0.275637, 0, 1, 0, -0.275637, 0, 0.961262, 23, 0, 13)
+script = ExtResource("tree")
+kind = "pine"
+height = 1.1
+
+[node name="Tree10" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(0.45399, 0, 0.891007, 0, 1, 0, -0.891007, 0, 0.45399, -23, 0, 13)
+script = ExtResource("tree")
+kind = "pine"
+height = 1.2
+
+[node name="Tree11" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, -0.34202, 23, 0, -13)
+script = ExtResource("tree")
+kind = "pine"
+height = 1
+
+[node name="Tree12" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.920505, 0, 0.390731, 0, 1, 0, -0.390731, 0, -0.920505, -23, 0, -13)
+script = ExtResource("tree")
+kind = "pine"
+height = 1.15
+
+[node name="Tree13" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.913545, 0, -0.406737, 0, 1, 0, 0.406737, 0, -0.913545, 13, 0, 23)
+script = ExtResource("tree")
+kind = "pine"
+height = 1.2
+
+[node name="Tree14" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.325568, 0, -0.945519, 0, 1, 0, 0.945519, 0, -0.325568, -13, 0, 23)
+script = ExtResource("tree")
+kind = "pine"
+height = 1
+
+[node name="Tree15" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(0.469472, 0, -0.882948, 0, 1, 0, 0.882948, 0, 0.469472, 13, 0, -23)
+script = ExtResource("tree")
+kind = "pine"
+height = 1.1
+
+[node name="Tree16" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -13, 0, -23)
+script = ExtResource("tree")
+kind = "pine"
+height = 1.2
+
+[node name="Tree17" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(0.848048, 0, 0.529919, 0, 1, 0, -0.529919, 0, 0.848048, 4.5, 0, 22)
+script = ExtResource("tree")
+kind = "round"
+height = 0.9
+
+[node name="Tree18" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(0.190809, 0, 0.981627, 0, 1, 0, -0.981627, 0, 0.190809, -4.5, 0, 22)
+script = ExtResource("tree")
+kind = "round"
+height = 1
+
+[node name="Tree19" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.587785, 0, 0.809017, 0, 1, 0, -0.809017, 0, -0.587785, 4.5, 0, -22)
+script = ExtResource("tree")
+kind = "round"
+height = 1
+
+[node name="Tree20" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.992546, 0, 0.121869, 0, 1, 0, -0.121869, 0, -0.992546, -4.5, 0, -22)
+script = ExtResource("tree")
+kind = "round"
+height = 0.9
+
+[node name="Tree21" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, -0.766044, 22, 0, 4.5)
+script = ExtResource("tree")
+kind = "round"
+height = 1
+
+[node name="Tree22" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.052336, 0, -0.99863, 0, 1, 0, 0.99863, 0, -0.052336, 22, 0, -4.5)
+script = ExtResource("tree")
+kind = "round"
+height = 0.9
+
+[node name="Tree23" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(0.694658, 0, -0.71934, 0, 1, 0, 0.71934, 0, 0.694658, -22, 0, 4.5)
+script = ExtResource("tree")
+kind = "round"
+height = 0.9
+
+[node name="Tree24" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(0.999848, 0, 0.0174524, 0, 1, 0, -0.0174524, 0, 0.999848, -22, 0, -4.5)
+script = ExtResource("tree")
+kind = "round"
+height = 1
+
+[node name="Tree25" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(0.669131, 0, 0.743145, 0, 1, 0, -0.743145, 0, 0.669131, 18, 0, 24)
+script = ExtResource("tree")
+kind = "pine"
+height = 1.3
+
+[node name="Tree26" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.0871557, 0, 0.996195, 0, 1, 0, -0.996195, 0, -0.0871557, -18, 0, -24)
+script = ExtResource("tree")
+kind = "pine"
+height = 1.3
+
+[node name="Tree27" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.788011, 0, 0.615661, 0, 1, 0, -0.615661, 0, -0.788011, 24.5, 0, 24.5)
+script = ExtResource("tree")
+kind = "round"
+height = 1.3
+
+[node name="Tree28" type="StaticBody3D" parent="Trees"]
+transform = Transform3D(-0.987688, 0, -0.156434, 0, 1, 0, 0.156434, 0, -0.987688, -24.5, 0, 24.5)
+script = ExtResource("tree")
+kind = "round"
+height = 1.2
+
+[node name="Fences" type="Node3D" parent="."]
+
+[node name="NorthA" type="StaticBody3D" parent="Fences"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -26)
+script = ExtResource("fence")
+length = 23.4
+
+[node name="NorthB" type="StaticBody3D" parent="Fences"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 0, -26)
+script = ExtResource("fence")
+length = 23.4
+
+[node name="SouthA" type="StaticBody3D" parent="Fences"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 26, 0, 26)
+script = ExtResource("fence")
+length = 23.4
+
+[node name="SouthB" type="StaticBody3D" parent="Fences"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -2.6, 0, 26)
+script = ExtResource("fence")
+length = 23.4
+
+[node name="EastA" type="StaticBody3D" parent="Fences"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 26, 0, -26)
+script = ExtResource("fence")
+length = 23.4
+
+[node name="EastB" type="StaticBody3D" parent="Fences"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 26, 0, 2.6)
+script = ExtResource("fence")
+length = 23.4
+
+[node name="WestA" type="StaticBody3D" parent="Fences"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -26, 0, 26)
+script = ExtResource("fence")
+length = 23.4
+
+[node name="WestB" type="StaticBody3D" parent="Fences"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -26, 0, -2.6)
+script = ExtResource("fence")
+length = 23.4
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Barrel1" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6, 0, -12.5)
+script = ExtResource("prop")
+kind = "barrel"
+
+[node name="Barrel2" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -11.7)
+script = ExtResource("prop")
+kind = "barrel"
+
+[node name="Crate3" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, -3.6, 0, -12.2)
+script = ExtResource("prop")
+kind = "crate"
+
+[node name="Crate4" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 0, 12)
+script = ExtResource("prop")
+kind = "crate"
+
+[node name="Crate5" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, 10.7, 0, 12.9)
+script = ExtResource("prop")
+kind = "crate"
+
+[node name="Barrel6" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 0, 12.3)
+script = ExtResource("prop")
+kind = "barrel"
+
+[node name="Bench7" type="StaticBody3D" parent="Props"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -5, 0, 6)
+script = ExtResource("prop")
+kind = "bench"
+
+[node name="Bench8" type="StaticBody3D" parent="Props"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 5, 0, 6)
+script = ExtResource("prop")
+kind = "bench"
+
+[node name="Bench9" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -6.2, 0, 0)
+script = ExtResource("prop")
+kind = "bench"
+
+[node name="Bench10" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 6.2, 0, 0)
+script = ExtResource("prop")
+kind = "bench"
+
+[node name="Flowers11" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -3.2, 0, -10.5)
+script = ExtResource("prop")
+kind = "flowers"
+color = Color(0.957, 0.714, 0.796, 1)
+
+[node name="Flowers12" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 3.2, 0, -10.5)
+script = ExtResource("prop")
+kind = "flowers"
+color = Color(0.953, 0.824, 0.478, 1)
+
+[node name="Flowers13" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -3.2, 0, 10.5)
+script = ExtResource("prop")
+kind = "flowers"
+color = Color(0.953, 0.824, 0.478, 1)
+
+[node name="Flowers14" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 3.2, 0, 10.5)
+script = ExtResource("prop")
+kind = "flowers"
+color = Color(0.957, 0.714, 0.796, 1)
+
+[node name="Flowers15" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, 3.2)
+script = ExtResource("prop")
+kind = "flowers"
+color = Color(0.847, 0.416, 0.604, 1)
+
+[node name="Flowers16" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, 3.2)
+script = ExtResource("prop")
+kind = "flowers"
+color = Color(0.416, 0.651, 0.847, 1)
+
+[node name="Flowers17" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 0, -3.2)
+script = ExtResource("prop")
+kind = "flowers"
+color = Color(0.416, 0.651, 0.847, 1)
+
+[node name="Flowers18" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, -3.2)
+script = ExtResource("prop")
+kind = "flowers"
+color = Color(0.847, 0.416, 0.604, 1)
+
+[node name="Bush19" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 0, 11.5)
+script = ExtResource("prop")
+kind = "bush"
+color = Color(0.957, 0.714, 0.796, 1)
+
+[node name="Bush20" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 0, 11.5)
+script = ExtResource("prop")
+kind = "bush"
+color = Color(0.984, 0.937, 0.796, 1)
+
+[node name="Bush21" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 0, -11.5)
+script = ExtResource("prop")
+kind = "bush"
+color = Color(0.953, 0.824, 0.478, 1)
+
+[node name="Bush22" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 0, -11.5)
+script = ExtResource("prop")
+kind = "bush"
+color = Color(0.957, 0.714, 0.796, 1)
+
+[node name="Bush23" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8, 0, 18.5)
+script = ExtResource("prop")
+kind = "bush"
+color = Color(0.984, 0.937, 0.796, 1)
+
+[node name="Bush24" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.8, 0, -18.5)
+script = ExtResource("prop")
+kind = "bush"
+color = Color(0.953, 0.824, 0.478, 1)
+
+[node name="Signpost25" type="StaticBody3D" parent="Props"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 2.6, 0, 24)
+script = ExtResource("prop")
+kind = "signpost"
+text = "To the Fields"
+
+[node name="Signpost26" type="StaticBody3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6, 0, -24)
+script = ExtResource("prop")
+kind = "signpost"
+text = "Petalbrook"
+
+[node name="Signpost27" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 24, 0, -2.6)
+script = ExtResource("prop")
+kind = "signpost"
+text = "Harbor Road"
+
+[node name="Signpost28" type="StaticBody3D" parent="Props"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -24, 0, 2.6)
+script = ExtResource("prop")
+kind = "signpost"
+text = "Old Forest"
