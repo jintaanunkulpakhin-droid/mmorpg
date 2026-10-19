@@ -1,0 +1,5 @@
+# Keep Godot text files with Unix line endings so diffs stay clean on Windows.
+* text=auto eol=lf
+*.png binary
+*.svg text
+*.jpg binary
