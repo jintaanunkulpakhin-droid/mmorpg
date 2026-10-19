@@ -14,15 +14,15 @@ var move_amount := 0.0
 
 # Each part: the joint it hangs from, where that joint sits on its parent
 # (in pixels), the picture's offset so it turns around the joint, and draw order.
-# The offsets come from tools/trim_art.py.
+# The pictures come from a painted parts sheet (see README, "The art").
 const PARTS := [
-	{"name": "leg_back", "parent": "hips", "pos": Vector2(-16, 0), "offset": Vector2(-15, -7), "z": 0},
-	{"name": "leg_front", "parent": "hips", "pos": Vector2(16, 0), "offset": Vector2(-16, -8), "z": 0},
-	{"name": "torso", "parent": "hips", "pos": Vector2(0, 0), "offset": Vector2(-94, -172), "z": 0},
-	{"name": "arm_back", "parent": "torso", "pos": Vector2(-28, -132), "offset": Vector2(-28, -15), "z": -1},
-	{"name": "head", "parent": "torso", "pos": Vector2(0, -152), "offset": Vector2(-105, -188), "z": 0},
-	{"name": "ponytail", "parent": "head", "pos": Vector2(76, -148), "offset": Vector2(-16, -32), "z": -1},
-	{"name": "arm_front", "parent": "torso", "pos": Vector2(28, -132), "offset": Vector2(-27, -16), "z": 1},
+	{"name": "leg_back", "parent": "hips", "pos": Vector2(-28, 0), "offset": Vector2(-31, -14), "z": 0},
+	{"name": "leg_front", "parent": "hips", "pos": Vector2(28, 0), "offset": Vector2(-31, -14), "z": 0},
+	{"name": "torso", "parent": "hips", "pos": Vector2(0, 0), "offset": Vector2(-65, -146), "z": 0},
+	{"name": "arm_back", "parent": "torso", "pos": Vector2(-56, -86), "offset": Vector2(-54, -13), "z": -1},
+	{"name": "head", "parent": "torso", "pos": Vector2(-1, -136), "offset": Vector2(-107, -173), "z": 0},
+	{"name": "ponytail", "parent": "head", "pos": Vector2(-31, -147), "offset": Vector2(-125, -99), "z": -1},
+	{"name": "arm_front", "parent": "torso", "pos": Vector2(55, -86), "offset": Vector2(-35, -13), "z": 1},
 ]
 
 var joints := {}
@@ -31,10 +31,10 @@ var _hips: Node2D
 
 
 func _ready() -> void:
-	# The hips sit 88 px above the feet. The rig's own position is the feet.
+	# The hips sit 155 px above the feet. The rig's own position is the feet.
 	_hips = Node2D.new()
 	_hips.name = "Hips"
-	_hips.position = Vector2(0, -88)
+	_hips.position = Vector2(0, -155)
 	add_child(_hips)
 	joints["hips"] = _hips
 	for p in PARTS:
@@ -56,7 +56,7 @@ func _process(delta: float) -> void:
 	var t := _time
 	# Every pose starts from standing still, then each state adds its own movement.
 	var pose := {
-		"hips_y": -88.0, "torso": 0.0, "head": 0.0, "ponytail": 0.0,
+		"hips_y": -155.0, "torso": 0.0, "head": 0.0, "ponytail": 0.0,
 		"arm_back": 0.15, "arm_front": -0.15, "leg_back": 0.0, "leg_front": 0.0,
 	}
 	match state:
@@ -97,4 +97,4 @@ func _process(delta: float) -> void:
 
 ## Where the front fist is in the world, for placing punch effects.
 func fist_position() -> Vector2:
-	return (joints["arm_front"] as Node2D).to_global(Vector2(0, 92))
+	return (joints["arm_front"] as Node2D).to_global(Vector2(13, 125))

@@ -7,7 +7,8 @@ in front of ink-wash mountains on rice paper.
 ![Benika throwing a fire punch](docs/screenshot.jpg)
 
 It's a test of the look and the controls only. There are no enemies, no other players and no menus yet.
-All the art is original and was drawn for this project from code. Nothing is taken from other games.
+Benika's body parts were painted with AI (a Higgsfield Seedream "parts sheet") and cut out for the game.
+The level art is drawn from code. Nothing is taken from other games. Steam asks you to disclose AI art when you publish.
 
 ## How to open and run it
 
@@ -54,19 +55,18 @@ tools/                   The scripts that drew the art (Godot ignores this folde
 **Try it in the editor:** select **Level** in `scenes/main.tscn` and edit **Platforms** in the
 Inspector. Each entry is a platform's x, y and width. The first one is the ground.
 
-## Redrawing the art
+## The art
 
-The parts are drawn from SVG in `tools/make_art.js`, with a "rough brush" filter.
-To change them, edit that file and run (needs Node.js and Playwright):
+Benika's 7 parts come from one AI-painted sheet (head, ponytail, body, two arms, two legs on white paper).
+The white was removed, each part was cut out and shrunk, and the ponytail painted on the head was erased
+so the separate ponytail can swing at its hair tie.
 
-```
-node tools/make_art.js
-python3 tools/trim_art.py
-```
+To use a new painting for a part, save it as a PNG with a see-through background and the same name in
+`art/benika/`. If its size or shape changes, fix that part's `pos` (where the joint sits) and `offset`
+(where the joint is inside the picture) in `PARTS` in `characters/cutout_rig.gd`.
 
-`trim_art.py` crops each part and prints its offset. If a part's size changes,
-copy the new offsets into `PARTS` in `characters/cutout_rig.gd`.
-Later, a human artist can replace these PNG files with hand-painted ones of the same names.
+The old placeholder parts were drawn from SVG by `tools/make_art.js` and `tools/trim_art.py`.
+Don't run those now: they would overwrite the painted parts.
 
 ## What could come next
 
