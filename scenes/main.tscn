@@ -1,0 +1,130 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://world/town.tscn" id="town"]
+[ext_resource type="PackedScene" path="res://characters/player.tscn" id="player"]
+[ext_resource type="PackedScene" path="res://characters/npc.tscn" id="npc"]
+[ext_resource type="PackedScene" path="res://world/follow_camera.tscn" id="camera"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="hud"]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMaterial"]
+sky_top_color = Color(0.56, 0.78, 0.94, 1)
+sky_horizon_color = Color(0.86, 0.93, 0.97, 1)
+sky_curve = 0.12
+ground_bottom_color = Color(0.66, 0.84, 0.54, 1)
+ground_horizon_color = Color(0.86, 0.93, 0.97, 1)
+sun_angle_max = 10.0
+
+[sub_resource type="Sky" id="Sky"]
+sky_material = SubResource("SkyMaterial")
+
+[sub_resource type="Environment" id="Environment"]
+background_mode = 2
+sky = SubResource("Sky")
+ambient_light_source = 2
+ambient_light_color = Color(0.96, 0.86, 0.88, 1)
+ambient_light_energy = 0.12
+tonemap_mode = 0
+fog_enabled = true
+fog_light_color = Color(0.86, 0.93, 0.97, 1)
+fog_density = 0.003
+fog_sky_affect = 0.0
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.81915, -0.45198, 0.35313, 0, 0.61566, 0.78801, -0.57358, -0.6455, 0.50432, 0, 12, 0)
+light_color = Color(1, 0.96, 0.88, 1)
+light_energy = 0.62
+shadow_enabled = true
+directional_shadow_max_distance = 40.0
+
+[node name="Town" parent="." instance=ExtResource("town")]
+
+[node name="Player" parent="." instance=ExtResource("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 4.5)
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="Mimi" parent="NPCs" instance=ExtResource("npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0.05, 10)
+npc_name = "Mimi"
+lines = Array[String](["Welcome to the Petal Cafe! Well, the outside of it. The inside isn't built yet.", "Everyone in Petalbrook dresses up. Try the wardrobe with the C key!", "Come back when the oven works. I'll bake you something sweet."])
+wander_radius = 2.5
+
+[node name="Chibi" parent="NPCs/Mimi" index="1"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+hair = "hair_twintails"
+head = "acc_ribbon"
+top = "top_apron_dress"
+shoes = "shoes_slippers"
+eye_color = Color(0.753, 0.337, 0.42, 1)
+
+[node name="Bram" parent="NPCs" instance=ExtResource("npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2, 0.05, 3)
+npc_name = "Bram"
+lines = Array[String](["Hm? A new face. Petalbrook is a small town, but a friendly one.", "Some day the road past the gate will lead to fields and dungeons.", "For now, enjoy the fountain. I've watched it for forty years."])
+wander_radius = 1.5
+
+[node name="Chibi" parent="NPCs/Bram" index="1"]
+transform = Transform3D(-0.93969, 0, -0.34202, 0, 1, 0, 0.34202, 0, -0.93969, 0, 0, 0)
+hair = "hair_spiky"
+head = "hat_beret"
+top = "top_coat"
+bottom = "bottom_pants"
+shoes = "shoes_boots"
+hair_dye = Color(0.733, 0.651, 0.576, 1)
+eye_color = Color(0.722, 0.455, 0.165, 1)
+
+[node name="Sera" parent="NPCs" instance=ExtResource("npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.05, -10)
+npc_name = "Sera"
+lines = Array[String](["I'm the town tailor. Every outfit here is made for the same body shape.", "That means any hat fits with any hair, and any top fits any bottom.", "Hats hide the top of your hair, and dresses replace your bottoms. Go try it!"])
+wander_radius = 2
+
+[node name="Chibi" parent="NPCs/Sera" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+hair = "hair_long"
+head = "hat_witch"
+top = "top_hoodie"
+bottom = "bottom_skirt"
+shoes = "shoes_boots"
+back = "back_cape"
+top_dye = Color(0.545, 0.373, 0.722, 1)
+hair_dye = Color(0.965, 0.953, 0.973, 1)
+eye_color = Color(0.545, 0.373, 0.722, 1)
+
+[node name="Pip" parent="NPCs" instance=ExtResource("npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0.05, 0)
+npc_name = "Pip"
+lines = Array[String](["Look, I have wings! They don't work yet, but they flap.", "Race you to the fountain!"])
+wander_radius = 4
+
+[node name="Chibi" parent="NPCs/Pip" index="1"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0, 0, 0)
+hair = "hair_bob"
+head = "acc_cat_ears"
+top = "top_tunic"
+bottom = "bottom_shorts"
+shoes = "shoes_boots"
+back = "back_wings"
+top_dye = Color(0.659, 0.835, 0.541, 1)
+hair_dye = Color(0.941, 0.584, 0.353, 1)
+eye_color = Color(0.247, 0.651, 0.478, 1)
+
+[node name="FollowCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("camera")]
+target = NodePath("../Player")
+
+[node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("hud")]
+player = NodePath("../Player")
+player_name = "Adventurer"
+
+[editable path="NPCs/Mimi"]
+
+[editable path="NPCs/Bram"]
+
+[editable path="NPCs/Sera"]
+
+[editable path="NPCs/Pip"]

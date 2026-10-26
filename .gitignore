@@ -1,0 +1,6 @@
+# Godot 4 cache and import files (made automatically when you open the project)
+.godot/
+*.import
+/android/
+export_presets.cfg
+*.tmp
