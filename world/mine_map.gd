@@ -137,8 +137,8 @@ func _build_lamp(pos: Vector3) -> void:
 	ToonKit.add_shape(self, "cone", Vector3(0.45, 0.2, 0), pos + Vector3(0.55, 2.5, 0), Color("#2a2420"), Vector3.ZERO, false, 8)
 	var light := OmniLight3D.new()
 	light.light_color = Color("#ffb75e")
-	light.light_energy = 2.2
-	light.omni_range = 7.5
+	light.light_energy = 3.5
+	light.omni_range = 9.0
 	light.omni_attenuation = 1.4
 	light.position = pos + Vector3(0.55, 2.0, 0)
 	add_child(light)

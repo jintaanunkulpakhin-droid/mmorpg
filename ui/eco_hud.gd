@@ -35,6 +35,7 @@ var _minimap: Control
 
 
 func _ready() -> void:
+	_build_vignette()
 	_build_status()
 	_build_hotbar()
 	_build_target()
@@ -151,6 +152,16 @@ func _bar_row(parent: Control, title: String, color: Color, height := 14) -> Arr
 	numbers.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	bar.add_child(numbers)
 	return [bar, numbers]
+
+
+func _build_vignette() -> void:
+	var shade := ColorRect.new()
+	shade.set_anchors_preset(Control.PRESET_FULL_RECT)
+	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var mat := ShaderMaterial.new()
+	mat.shader = preload("res://shaders/vignette.gdshader")
+	shade.material = mat
+	add_child(shade)
 
 
 func _build_status() -> void:
