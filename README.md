@@ -5,7 +5,7 @@
 When you press Play, the game now starts in a dark mine that copies the *feel* of the
 Emil Chronicle Online video: a camera looking down at an angle, small chibi characters
 with names over their heads, glowing magic circles, damage numbers, a classic MMO screen
-layout and a level-up flash. All art is our own, made from simple shapes in code.
+layout and a quiet level-up (a light pillar and a log line, like ECO). All art is our own, made from simple shapes in code.
 
 ![Blaze Ring magic circle in the mine](docs/screenshots/mine_blaze_ring.jpg)
 

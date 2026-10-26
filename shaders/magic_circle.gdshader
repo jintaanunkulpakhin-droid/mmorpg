@@ -15,7 +15,7 @@ float ring(float r, float radius, float width) {
 // One straight edge of the star: a line 0.4 away from the middle.
 float star_line(vec2 p, float angle) {
 	float d = abs(dot(p, vec2(cos(angle), sin(angle))) - 0.4);
-	return 1.0 - smoothstep(0.0, 0.02, d);
+	return 1.0 - smoothstep(0.0, 0.05, d);
 }
 
 void fragment() {
@@ -24,9 +24,9 @@ void fragment() {
 	float a = atan(p.y, p.x);
 
 	float glow = 0.0;
-	glow += ring(r, 0.95, 0.025) * 1.2;
-	glow += ring(r, 0.80, 0.015);
-	glow += ring(r, 0.42, 0.015) * 0.8;
+	glow += ring(r, 0.93, 0.07) * 1.1;
+	glow += ring(r, 0.78, 0.04) * 0.8;
+	glow += ring(r, 0.42, 0.04) * 0.6;
 
 	// Little ticks between the two outer rings, turning one way.
 	float ticks = step(0.82, r) * step(r, 0.93) * step(0.75, fract((a + spin) * 24.0 / 6.2831));
@@ -41,10 +41,10 @@ void fragment() {
 	star = max(star, star_line(p, spin * -0.6 + 4.1888));
 	star = max(star, star_line(p, spin * -0.6 + 5.2360));
 	star *= step(r, 0.8);
-	glow += star * 0.9;
+	glow += star * 0.6;
 
 	// Soft fill in the middle.
-	glow += (1.0 - smoothstep(0.0, 1.0, r)) * 0.18;
+	glow += (1.0 - smoothstep(0.0, 1.0, r)) * 0.35;
 	glow *= step(r, 1.0);
 
 	ALBEDO = color.rgb * glow * 1.6;

@@ -11,8 +11,8 @@
 background_mode = 1
 background_color = Color(0.04, 0.04, 0.06, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.55, 0.58, 0.72, 1)
-ambient_light_energy = 0.22
+ambient_light_color = Color(0.8, 0.76, 0.72, 1)
+ambient_light_energy = 0.5
 tonemap_mode = 0
 glow_enabled = true
 glow_intensity = 0.9
@@ -32,8 +32,8 @@ environment = SubResource("Environment")
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.81915, -0.45198, 0.35313, 0, 0.61566, 0.78801, -0.57358, -0.6455, 0.50432, 0, 12, 0)
-light_color = Color(0.72, 0.78, 1, 1)
-light_energy = 0.22
+light_color = Color(0.95, 0.92, 0.88, 1)
+light_energy = 0.45
 shadow_enabled = true
 directional_shadow_max_distance = 40.0
 
@@ -84,9 +84,9 @@ script = ExtResource("monster")
 [node name="FollowCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("camera")]
 target = NodePath("../Player")
 pitch_degrees = -48.0
-distance = 12.0
+distance = 15.0
 min_distance = 6.0
-max_distance = 17.0
+max_distance = 20.0
 collision_mask = 0
 
 [node name="Battle" type="Node" parent="." node_paths=PackedStringArray("player")]

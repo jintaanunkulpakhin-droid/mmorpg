@@ -9,10 +9,9 @@ extends StaticBody3D
 
 const HALF_SIZE := 18.0  # the map goes from -18 to 18 on X and Z
 
-const FLOOR_A := Color("#3e3d42")
-const FLOOR_B := Color("#424146")
-const ROCK := Color("#2c2a30")
-const ROCK_LIGHT := Color("#3a3740")
+const ROCK_FLOOR_SHADER := preload("res://shaders/rock_floor.gdshader")
+const ROCK := Color("#4a423b")
+const ROCK_LIGHT := Color("#655a4f")
 const GIRDER := Color("#9e2228")
 const GIRDER_DARK := Color("#6e161b")
 const RAIL := Color("#8c8f96")
@@ -58,10 +57,8 @@ func _build_floor() -> void:
 	var plane := PlaneMesh.new()
 	plane.size = Vector2(HALF_SIZE * 2.0 + 8.0, HALF_SIZE * 2.0 + 8.0)
 	mi.mesh = plane
-	var mat: ShaderMaterial = ToonKit.material(FLOOR_A).duplicate()
-	mat.set_shader_parameter("use_checker", true)
-	mat.set_shader_parameter("checker_color", FLOOR_B)
-	mat.set_shader_parameter("checker_size", 2.0)
+	var mat := ShaderMaterial.new()
+	mat.shader = ROCK_FLOOR_SHADER
 	mi.material_override = mat
 	add_child(mi)
 	ToonKit.add_box_collider(self, Vector3(HALF_SIZE * 2.0 + 8.0, 0.2, HALF_SIZE * 2.0 + 8.0), Vector3(0, -0.1, 0))
@@ -186,7 +183,7 @@ func _build_crystals(pos: Vector3) -> void:
 func _build_rocks() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 21
-	for i in 22:
+	for i in 45:
 		var pos := Vector3(rng.randf_range(-HALF_SIZE + 1, HALF_SIZE - 1), 0, rng.randf_range(-HALF_SIZE + 1, HALF_SIZE - 1))
 		if absf(pos.x - RAIL_X) < 1.5 or pos.length() < 4.0:
 			continue

@@ -4,7 +4,6 @@ extends CanvasLayer
 ##   top middle  = two rows of skill hotkeys, and the target's HP under them
 ##   top right   = minimap
 ##   bottom left = chat / battle log
-##   middle      = big "LEVEL UP!" banner
 ## Everything is built in code so it is easy to read in one place.
 
 const MineMap := preload("res://world/mine_map.gd")
@@ -31,7 +30,6 @@ var _log: RichTextLabel
 var _target_panel: PanelContainer
 var _target_name: Label
 var _target_bar: ProgressBar
-var _banner: Label
 var _slots := {}  # skill id -> SkillSlot
 var _minimap: Control
 
@@ -42,10 +40,9 @@ func _ready() -> void:
 	_build_target()
 	_build_minimap()
 	_build_log()
-	_build_banner()
 	_build_help()
 	battle.logged.connect(_add_log)
-	battle.leveled_up.connect(_show_banner)
+	battle.leveled_up.connect(_flash_level)
 	_add_log("Welcome to the %s." % map_name, Color("#ffd27a"))
 	_add_log("Click a monster to fight it. Keys 1, 2, 3 use skills.", DIM_TEXT)
 
@@ -287,26 +284,12 @@ func _add_log(text: String, color: Color) -> void:
 	_log.append_text("[color=#%s]%s[/color]\n" % [color.to_html(false), text])
 
 
-func _build_banner() -> void:
-	_banner = _label("", 54, Color("#ffe08a"))
-	_banner.add_theme_constant_override("outline_size", 12)
-	_banner.add_theme_color_override("font_outline_color", Color("#5a2a08"))
-	_banner.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_place(_banner, Control.PRESET_CENTER, Vector2(-350, -200), Vector2(700, 80))
-	_banner.pivot_offset = Vector2(350, 40)
-	_banner.modulate.a = 0.0
-	add_child(_banner)
-
-
-func _show_banner(kind: String, level: int) -> void:
-	_banner.text = "LEVEL UP!  Lv %d" % level if kind == "base" else "JOB LEVEL UP!  Job Lv %d" % level
-	_banner.add_theme_color_override("font_color", Color("#ffe08a") if kind == "base" else Color("#9fdcff"))
-	var tween := _banner.create_tween()
-	tween.tween_property(_banner, "modulate:a", 1.0, 0.15)
-	tween.parallel().tween_property(_banner, "scale", Vector2.ONE, 0.35).from(Vector2(1.8, 1.8)) \
-			.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_interval(1.4)
-	tween.tween_property(_banner, "modulate:a", 0.0, 0.5)
+## Like ECO, a level up is quiet on screen: the light pillar around the
+## character, a log line, and the level number glowing for a moment.
+func _flash_level(_kind: String, _level: int) -> void:
+	var tween := _level_text.create_tween()
+	_level_text.modulate = Color(2.0, 1.8, 1.0)
+	tween.tween_property(_level_text, "modulate", Color.WHITE, 1.5)
 
 
 func _build_help() -> void:

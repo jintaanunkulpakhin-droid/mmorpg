@@ -47,6 +47,8 @@ static func magic_circle(parent: Node, pos: Vector3, color: Color, radius := 1.3
 		light.light_energy = f * 2.0, 1.0, 0.0, 0.25).set_delay(duration - 0.25)
 	tween.tween_property(root, "scale", Vector3.ONE, 0.2).from(Vector3(0.4, 1.0, 0.4))
 	tween.chain().tween_callback(root.queue_free)
+	# Little twinkles floating up off the circle.
+	sparkles(parent, pos, color.lightened(0.5), int(12 + radius * 14), true, duration)
 	return root
 
 

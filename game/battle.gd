@@ -182,23 +182,23 @@ func use_skill(id: String) -> void:
 			target = foe
 			attacking = true
 			player.face_towards(foe.global_position)
-			Fx.magic_circle(scene, feet, FIRE_RED, 1.1, skill.cast + 0.2)
+			Fx.magic_circle(scene, feet, FIRE_RED, 0.8, skill.cast + 0.2)
 			_after(skill.cast, func() -> void:
 				if not foe.alive:
 					return
 				Fx.fire(scene, foe.global_position, 0.5)
-				Fx.magic_circle(scene, foe.global_position, Color(1.0, 0.55, 0.2), 0.9, 0.6)
+				Fx.magic_circle(scene, foe.global_position, Color(1.0, 0.55, 0.2), 0.7, 0.6)
 				var damage: int = randi_range(38, 52) + stats.INT * 2
 				Fx.damage_number(scene, foe.global_position + Vector3(0, 1.5, 0), str(damage), Color("#ffb347"), true)
 				foe.take_damage(damage, player))
 		"blaze_ring":
-			Fx.magic_circle(scene, feet, Color(1.0, 0.3, 0.15), 3.4, skill.cast + 0.4)
+			Fx.magic_circle(scene, feet, Color(1.0, 0.3, 0.15), 1.6, skill.cast + 0.4)
 			_after(skill.cast, func() -> void:
 				Fx.fire(scene, feet, 0.4)
 				Fx.sparkles(scene, feet + Vector3(0, 0.3, 0), Color(1.0, 0.5, 0.2), 60)
 				var hit_any := false
 				for monster in get_tree().get_nodes_in_group("monsters"):
-					if monster.alive and _flat_distance(monster.global_position, feet) < 3.5:
+					if monster.alive and _flat_distance(monster.global_position, feet) < 2.5:
 						var damage: int = randi_range(25, 35) + stats.INT
 						Fx.damage_number(scene, monster.global_position + Vector3(0, 1.4, 0), str(damage), Color("#ffb347"))
 						monster.take_damage(damage, player)
@@ -206,7 +206,7 @@ func use_skill(id: String) -> void:
 				if not hit_any:
 					say("Blaze Ring hit nothing.", Color("#bdb6a8")))
 		"first_aid":
-			Fx.magic_circle(scene, feet, HEAL_GREEN, 1.2, skill.cast + 0.4)
+			Fx.magic_circle(scene, feet, HEAL_GREEN, 0.8, skill.cast + 0.4)
 			Fx.sparkles(scene, feet, HEAL_GREEN, 30, true)
 			_after(skill.cast, func() -> void:
 				var amount: int = 60 + stats.VIT * 3
@@ -276,7 +276,7 @@ func _base_level_up() -> void:
 	var scene := get_tree().current_scene
 	var feet := player.global_position
 	Fx.light_pillar(scene, feet, LEVEL_GOLD, 0.9, 6.0, 1.6)
-	Fx.magic_circle(scene, feet, LEVEL_GOLD, 1.8, 1.6)
+	Fx.magic_circle(scene, feet, LEVEL_GOLD, 1.0, 1.6)
 	Fx.sparkles(scene, feet + Vector3(0, 0.2, 0), LEVEL_GOLD, 70, true, 1.6)
 	Fx.sparkles(scene, feet + Vector3(0, 1.0, 0), Color(1.0, 0.95, 0.7), 40)
 	say("Base Level up! You are now Lv %d." % base_level, LEVEL_GOLD)
