@@ -1,5 +1,35 @@
 # Petalbrook: MMORPG prototype
 
+## New: the ECO-style mine (opens first)
+
+When you press Play, the game now starts in a dark mine that copies the *feel* of the
+Emil Chronicle Online video: a camera looking down at an angle, small chibi characters
+with names over their heads, glowing magic circles, damage numbers, a classic MMO screen
+layout and a level-up flash. All art is our own, made from simple shapes in code.
+
+![Blaze Ring magic circle in the mine](docs/screenshots/mine_blaze_ring.jpg)
+
+| Flame Burst hitting a slime | Level up |
+|---|---|
+| ![Fire hit](docs/screenshots/mine_fire_hit.jpg) | ![Level up](docs/screenshots/mine_level_up.jpg) |
+
+| Action | Keys / mouse |
+|---|---|
+| Walk | **Left click** the ground, or **W A S D** |
+| Fight a monster | **Left click** it (you walk over and punch it) |
+| Flame Burst / Blaze Ring / First Aid | **1** / **2** / **3** (or click the hotkey box) |
+| Stop fighting | **Esc** |
+| Turn / zoom the camera | **Q** / **E** or right mouse drag, and the **mouse wheel** |
+
+Beat two slimes to see the level-up. Where things live:
+`scenes/mine.tscn` (the map scene), `world/mine_map.gd` (girders, rails, lamps),
+`characters/monster.gd` (slimes), `game/battle.gd` (skills, EXP, levels),
+`effects/fx.gd` (magic circles, light pillars, sparkles) and `ui/eco_hud.gd` (screen layout).
+
+To open the old pastel town instead, open `scenes/main.tscn` in Godot and press **F6**.
+
+## The town
+
 The first playable piece of our MMORPG: one cosy pastel town you can walk around in.
 It is made in **Godot 4** and aims for the feel of classic anime MMOs like Emil Chronicle Online:
 cute 3D chibi characters, soft cel shading, a camera that follows you, and lots of outfits.

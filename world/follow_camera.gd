@@ -13,6 +13,9 @@ extends Node3D
 @export var follow_speed := 8.0
 @export var mouse_turn_speed := 0.3
 @export var key_turn_speed := 100.0
+## Which physics layers push the camera closer. 0 = nothing does (good for
+## an open top-down map like the mine).
+@export_flags_3d_physics var collision_mask := 1
 
 @onready var camera: Camera3D = $Camera3D
 
@@ -54,9 +57,12 @@ func _process(delta: float) -> void:
 	# If a house or tree is between the player and the camera, move the
 	# camera closer so it doesn't end up inside the wall.
 	var wanted := distance
+	if collision_mask == 0:
+		camera.position = Vector3(0, 0, wanted)
+		return
 	var from := global_position
 	var to := global_transform * Vector3(0, 0, distance + 0.4)
-	var query := PhysicsRayQueryParameters3D.create(from, to, 1)
+	var query := PhysicsRayQueryParameters3D.create(from, to, collision_mask)
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
 	if hit:
 		wanted = maxf(from.distance_to(hit.position) - 0.4, 0.8)

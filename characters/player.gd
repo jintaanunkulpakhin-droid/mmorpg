@@ -14,6 +14,9 @@ var _gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 ## Set by the HUD while a dialogue or text box is open, so the player stands still.
 var frozen := false
 
+## Sent when a monster hits the player. The battle code handles the damage.
+signal hit(amount: int, from: Node3D)
+
 
 func _ready() -> void:
 	click_marker.top_level = true
@@ -81,3 +84,19 @@ func _physics_process(delta: float) -> void:
 func face_towards(point: Vector3) -> void:
 	var d := point - global_position
 	model.rotation.y = atan2(d.x, d.z)
+
+
+## Walks to a spot, as if the ground there was clicked (used to chase monsters).
+func walk_to(point: Vector3) -> void:
+	_click_target = Vector3(point.x, global_position.y, point.z)
+	click_marker.global_position = Vector3(point.x, global_position.y + 0.03, point.z)
+
+
+## Stops walking to a clicked spot.
+func stop_walking() -> void:
+	_click_target = null
+
+
+## Called by monsters when they hit the player.
+func take_hit(amount: int, from: Node3D) -> void:
+	hit.emit(amount, from)
